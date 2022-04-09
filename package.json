@@ -1,11 +1,11 @@
 {
-  "name": "chrome-extension-boilerplate-react",
+  "name": "enlivening",
   "version": "4.3.5",
   "description": "A chrome extension boilerplate built with React 17, Webpack 5, and Webpack Dev Server 4",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lxieyang/chrome-extension-boilerplate-react.git"
+    "url": "git+https://github.com/lxieyang/chrome-extension-boilerplate-react.git"
   },
   "scripts": {
     "build": "node utils/build.js",
@@ -54,5 +54,11 @@
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/lxieyang/chrome-extension-boilerplate-react/issues"
+  },
+  "homepage": "https://github.com/lxieyang/chrome-extension-boilerplate-react#readme",
+  "main": "webpack.config.js",
+  "author": ""
 }
