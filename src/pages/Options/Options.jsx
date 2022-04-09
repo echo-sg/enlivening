@@ -1,53 +1,6 @@
 import React from 'react';
 import './Options.css';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import { DataGrid } from '@mui/x-data-grid';
 
-const columns = [
-  {
-    field: 'userName',
-    headerName: 'userName',
-    width: 110,
-
-    // editable: true,
-  },
-
-  {
-    field: 'user',
-    headerName: 'User',
-    width: 100,
-    renderCell: (params) => {
-      console.log(params.row.avatar);
-      return (
-        <>
-          <Avatar src={params.row.avatar} />
-        </>
-      );
-    },
-  },
-  {
-    field: 'remove',
-    headerName: 'Remove',
-    width: 100,
-    renderCell: (params) => {
-      return (
-        <>
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            style={{ marginLeft: 16 }}
-            // onClick={}
-          >
-            Remove
-          </Button>
-        </>
-      );
-    },
-    disableClickEventBubbling: true,
-  },
-];
 const rows = [
   { id: 1, userName: '_shreygupta', name: 'Shrey Gupta' },
   { id: 2, userName: 'nafees87n', name: 'Nafees Nehar ' },
@@ -66,6 +19,12 @@ const Options = () => {
     <div className="MainUI">
       <div></div>
       <div className="UsersListArea">
+        <div className="SearchBarArea">
+          <div>
+            <input className="SearchBar" placeholder="Add User"></input>
+          </div>
+          <button className="AddUserButton">Add new user</button>
+        </div>
         <div className="UsersTable" style={{ fontWeight: 'bold' }}>
           <table>
             <tr>
