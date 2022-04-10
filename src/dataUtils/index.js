@@ -1,31 +1,5 @@
-import { getAuth, signInWithPopup, TwitterAuthProvider } from 'firebase/auth';
-import firebaseApp from '../firebase';
 import { KEYS } from '../KEYS';
 const axios = require('axios');
-
-export const twitterSignIn = () => {
-  const provider = new TwitterAuthProvider();
-  const auth = getAuth(firebaseApp);
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const credential = TwitterAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const secret = credential.secret;
-      const user = result.user;
-      console.log({
-        user,
-        token,
-        secret,
-      });
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.email;
-      const credential = TwitterAuthProvider.credentialFromError(error);
-      console.error({ errorCode, errorMessage, email, credential });
-    });
-};
 
 export const getTweets = (twitterId) => {
   var config = {
