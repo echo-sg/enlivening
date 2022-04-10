@@ -1,5 +1,7 @@
 import React from 'react';
 import './Options.css';
+// import logo from './../../assets/img/logo.png';
+import logo from './../../assets/img/logo-black.png';
 
 const rows = [
   { id: 1, userName: '_shreygupta', name: 'Shrey Gupta' },
@@ -17,7 +19,15 @@ const rows = [
 const Options = () => {
   return (
     <div className="MainUI">
-      <div></div>
+      <div className="header container">
+        <img
+          src={logo}
+          alt="logo"
+          height="80px"
+          width="auto"
+          className="logo"
+        />
+      </div>
       <div className="UsersListArea">
         <div className="SearchBarArea">
           <div>
