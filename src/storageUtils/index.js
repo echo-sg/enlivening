@@ -34,3 +34,7 @@ export const getAllUsers = () => {
     });
   });
 };
+
+export const clearFeed = () => {
+  chrome.storage.sync.clear();
+};

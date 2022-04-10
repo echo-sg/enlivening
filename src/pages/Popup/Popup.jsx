@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './Popup.css';
 import Tweet from './Tweet.jsx';
 import Button from '@material-ui/core/Button';
-import { getTweets, twitterSignIn } from '../../dataUtils';
+import { getTweets } from '../../dataUtils';
 import Grid from '@material-ui/core/Grid';
-import { getAllUsers, saveRecords } from '../../storageUtils';
+import { clearFeed, getAllUsers, saveRecords } from '../../storageUtils';
 
 export default function Popup() {
   const [tweetsList, setTweetsList] = useState([]);
@@ -22,6 +22,7 @@ export default function Popup() {
               username: user.username,
               name: user.name,
               profile_image_url: user.profile_image_url,
+              show: true,
             });
           });
           setTweetsList((prev) => [...prev, ...tweetsCopy]);
@@ -29,6 +30,23 @@ export default function Popup() {
       });
     });
   }, []);
+
+  const doClearFeed = () => {
+    setTweetsList([]);
+    clearFeed();
+  };
+
+  const changeTweetVisiblity = (tweetId) => {
+    setTweetsList((prev) => {
+      const prevCopy = [...prev];
+      const index = prevCopy.findIndex((prevData) => prevData.id === tweetId);
+      if (index !== -1) {
+        const tweet = prevCopy[index];
+        tweet.show = false;
+      }
+      return prevCopy;
+    });
+  };
 
   return (
     <div className="App">
@@ -50,18 +68,23 @@ export default function Popup() {
           color="primary"
           style={{ margin: '20px' }}
           align="right"
+          onClick={doClearFeed}
         >
           Clear feed
         </Button>
       </Grid>
       <div className="Twitter-embed">
-        {tweetsList.map((tweet) => {
+        {tweetsList.map((tweet, i) => {
           return (
             <Tweet
               name={tweet.name}
               username={tweet.username}
               tweet={tweet.text}
               profileImage={tweet.profile_image_url}
+              tweetId={tweet.id}
+              showTweet={tweet.show}
+              changeTweetVisiblity={changeTweetVisiblity}
+              key={i}
             />
           );
         })}
