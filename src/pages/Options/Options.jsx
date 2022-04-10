@@ -61,6 +61,7 @@ const Options = () => {
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
+              value={username}
             ></input>
           </div>
           <button className="AddUserButton" onClick={addUser}>
