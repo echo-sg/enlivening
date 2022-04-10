@@ -4,10 +4,12 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Checkbox from '@mui/material/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    margin: 6,
   },
   paper: {
     padding: theme.spacing(2),
@@ -27,12 +29,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ComplexGrid({ username, name, tweet }) {
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+export default function Tweet() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} justify="flex-start">
           <Grid item style={{ paddingTop: '15px' }}>
             <Avatar>RJ</Avatar>
           </Grid>
@@ -57,6 +62,20 @@ export default function ComplexGrid({ username, name, tweet }) {
           </Grid>
         </Grid>
       </Paper>
+      <Grid container justify="flex-end">
+        <div style={{ paddingTop: '15px'}}>
+        Mark as read{' '}
+        </div>
+        <Checkbox
+          {...label}
+          sx={{
+            color: 'green',
+            '&.Mui-checked': {
+              color: 'green',
+            },
+          }}
+        />
+      </Grid>
     </div>
   );
 }

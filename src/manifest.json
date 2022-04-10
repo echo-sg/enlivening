@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Enlivening",
+  "name": "Sappy",
   "description": "Don't miss tweets from your favourite content creators",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
