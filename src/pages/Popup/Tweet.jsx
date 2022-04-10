@@ -26,24 +26,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ComplexGrid() {
+export default function ComplexGrid({ username, name, tweet }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Grid 
-        container 
-        spacing={2}>
-          <Grid item style={{paddingTop:"15px"}}>
+        <Grid container spacing={2}>
+          <Grid item style={{ paddingTop: '15px' }}>
             <Avatar>RJ</Avatar>
           </Grid>
           <Grid item>
             <Typography gutterBottom p={0} variant="subtitle1">
-              React
+              {name}
             </Typography>
             <Typography variant="body2" p={0} color="textSecondary">
-              @reactjs
+              @{username}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3} container>
@@ -51,9 +49,7 @@ export default function ComplexGrid() {
               <Grid item xs={12}>
                 <Grid item>
                   <Typography variant="subtitle1" align="left">
-                    The changes in the React 18 typings go a long way towards
-                    catching issues that were previously silently ignored and
-                    caused crashes.
+                    {tweet}
                   </Typography>
                 </Grid>
               </Grid>
