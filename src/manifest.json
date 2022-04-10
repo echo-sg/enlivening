@@ -18,5 +18,5 @@
     }
   ],
   "host_permissions": ["https://api.twitter.com/*"],
-  "permissions": ["https://api.twitter.com/*"]
+  "permissions": ["storage"]
 }

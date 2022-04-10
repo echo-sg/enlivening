@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Options.css';
 // import logo from './../../assets/img/logo.png';
 import logo from './../../assets/img/logo-black.png';
+import { saveRecords } from '../../storageUtils';
 
 const rows = [
   { id: 1, userName: '_shreygupta', name: 'Shrey Gupta' },

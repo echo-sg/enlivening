@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Popup.css';
 import Button from '@material-ui/core/Button';
 import ComplexGrid from './Tweet.jsx';
-import { getTweets, twitterSignIn } from '../../loginUtils';
+import { getTweets, twitterSignIn } from '../../dataUtils';
 
 export default function Popup() {
+  const [tweets, setTweets] = useState([]);
   useEffect(() => {
-    getTweets();
+    getTweets().then((res) => setTweets(res.data));
   }, []);
   return (
     <div className="App">
@@ -31,7 +32,10 @@ export default function Popup() {
         </Button>
       </header>
       <div className="Twitter-embed">
-        <ComplexGrid />
+        {/* {tweets.map(tweet=>{
+          return <ComplexGrid name={} />
+        })} */}
+        <ComplexGrid name={"nafees"} username="nafees87n" tweet={"fbsjfbdj"} />
       </div>
     </div>
   );

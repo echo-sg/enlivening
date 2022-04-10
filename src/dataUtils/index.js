@@ -47,8 +47,7 @@ export const getTweets = () => {
   return new Promise((resolve, reject) => {
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        resolve(response);
+        resolve(response.data);
       })
       .catch(function (error) {
         console.log(error);
