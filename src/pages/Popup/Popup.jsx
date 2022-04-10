@@ -35,9 +35,7 @@ export default function Popup() {
         </Button>
     </Grid>
       <div className="Twitter-embed">
-        <Tweet />
-        <Tweet />
-        <Tweet />
+        <Tweet name={"nafees"} username="nafees87n" tweet="dbjabdsja" />
       </div>
     </div>
   );

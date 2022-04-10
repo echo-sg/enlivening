@@ -28,10 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ComplexGrid({ username, name, tweet }) {
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-export default function Tweet() {
+export default function Tweet({ name, username, tweet }) {
   const classes = useStyles();
 
   return (
@@ -63,11 +60,9 @@ export default function Tweet() {
         </Grid>
       </Paper>
       <Grid container justify="flex-end">
-        <div style={{ paddingTop: '15px'}}>
-        Mark as read{' '}
-        </div>
+        <div style={{ paddingTop: '15px' }}>Mark as read </div>
         <Checkbox
-          {...label}
+          // {...label}
           sx={{
             color: 'green',
             '&.Mui-checked': {
