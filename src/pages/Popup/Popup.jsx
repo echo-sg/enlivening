@@ -25,6 +25,7 @@ export default function Popup() {
               show: true,
             });
           });
+          tweetsCopy.length = 2;
           setTweetsList((prev) => [...prev, ...tweetsCopy]);
         });
       });

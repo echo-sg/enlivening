@@ -4,7 +4,7 @@ const axios = require('axios');
 export const getTweets = (twitterId) => {
   var config = {
     method: 'get',
-    url: `https://api.twitter.com/2/users/${twitterId}/tweets?tweet.fields=created_at`,
+    url: `https://api.twitter.com/2/users/${twitterId}/tweets?tweet.fields=created_at&max_results=5`,
     headers: {
       Authorization: 'Bearer ' + KEYS.BEARER_TOKEN,
     },
