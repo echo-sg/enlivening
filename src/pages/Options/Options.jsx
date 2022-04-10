@@ -4,19 +4,6 @@ import logo from './../../assets/img/logo-black.png';
 import { getAllUsers, removeRecords, saveRecords } from '../../storageUtils';
 import { getTwitterUserByUserName } from '../../dataUtils';
 
-// const rows = [
-//   { id: 1, userName: '_shreygupta', name: 'Shrey Gupta' },
-//   { id: 2, userName: 'nafees87n', name: 'Nafees Nehar ' },
-//   { id: 3, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
-//   { id: 4, userName: '4molydenum2', name: 'Tathagat Paul' },
-//   { id: 5, userName: 'maybe_anurag', name: 'Anurag' },
-//   { id: 6, userName: '_shreygupta', name: 'Shrey Gupta' },
-//   { id: 7, userName: 'nafees87n', name: 'Nafees Nehar ' },
-//   { id: 8, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
-//   { id: 9, userName: '4molydenum2', name: 'Tathagat Paul' },
-//   { id: 10, userName: 'maybe_anurag', name: 'Anurag' },
-// ];
-
 const Options = () => {
   const [username, setUsername] = useState('');
   const [userList, setUserList] = useState([]);
