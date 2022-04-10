@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Options.css';
 import logo from './../../assets/img/logo-black.png';
-import { getAllUsers, saveRecords } from '../../storageUtils';
+import { getAllUsers, removeRecords, saveRecords } from '../../storageUtils';
 import { getTwitterUserByUserName } from '../../dataUtils';
 
 // const rows = [
@@ -28,6 +28,18 @@ const Options = () => {
         if (userObject.data) {
           saveRecords([{ ...userObject.data }], null);
           setUsername('');
+        } else {
+          throw Error('User not found');
+        }
+      })
+      .then(() => setShouldRefresh(true));
+  };
+
+  const removeUser = (username) => {
+    getTwitterUserByUserName(username)
+      .then((userObject) => {
+        if (userObject.data) {
+          removeRecords([userObject.data.id]);
         } else {
           throw Error('User not found');
         }
@@ -90,9 +102,10 @@ const Options = () => {
                         color: '#FE7575',
                         marginLeft: '5px ',
                         fontSize: '20px',
+                        cursor: 'pointer',
                       }}
                       onClick={() => {
-                        console.log('Delete triggered');
+                        removeUser(val.username);
                       }}
                     ></i>
                   </td>
