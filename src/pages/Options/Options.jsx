@@ -15,6 +15,16 @@ const rows = [
   { id: 8, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
   { id: 9, userName: '4molydenum2', name: 'Tathagat Paul' },
   { id: 10, userName: 'maybe_anurag', name: 'Anurag' },
+  { id: 11, userName: '_shreygupta', name: 'Shrey Gupta' },
+  { id: 12, userName: 'nafees87n', name: 'Nafees Nehar ' },
+  { id: 13, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
+  { id: 14, userName: '4molydenum2', name: 'Tathagat Paul' },
+  { id: 15, userName: 'maybe_anurag', name: 'Anurag' },
+  { id: 16, userName: '_shreygupta', name: 'Shrey Gupta' },
+  { id: 17, userName: 'nafees87n', name: 'Nafees Nehar ' },
+  { id: 18, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
+  { id: 19, userName: '4molydenum2', name: 'Tathagat Paul' },
+  { id: 20, userName: 'maybe_anurag', name: 'Anurag' },
 ];
 
 const Options = () => {
@@ -73,6 +83,9 @@ const Options = () => {
                         color: '#FE7575',
                         marginLeft: '5px ',
                         fontSize: '20px',
+                      }}
+                      onClick={() => {
+                        console.log('Delete triggered');
                       }}
                     ></i>
                   </td>

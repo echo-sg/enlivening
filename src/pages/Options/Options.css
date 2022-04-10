@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow:hidden;
+  /* overflow-x:hidden; */
   flex-direction:column;
 }
 
@@ -95,6 +95,7 @@ td {
   height: 89vh;
   display: flex;
   flex-direction: column;
+  overflow-x:hidden;
 
 }
 
