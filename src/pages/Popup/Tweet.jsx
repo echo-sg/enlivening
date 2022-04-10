@@ -28,8 +28,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Tweet({ name, username, tweet, profileImage }) {
+export default function Tweet({
+  tweetId,
+  name,
+  username,
+  tweet,
+  profileImage,
+  showTweet,
+  changeTweetVisiblity,
+}) {
   const classes = useStyles();
+
+  if (!showTweet) return null;
 
   return (
     <div className={classes.root}>
@@ -60,7 +70,9 @@ export default function Tweet({ name, username, tweet, profileImage }) {
         </Grid>
       </Paper>
       <Grid container justify="flex-end">
-        <div style={{ paddingTop: '15px' }}>Mark as read </div>
+        <div style={{ paddingTop: '15px' }} onClick={changeTweetVisiblity}>
+          Mark as read{' '}
+        </div>
         <Checkbox
           // {...label}
           sx={{
@@ -69,6 +81,7 @@ export default function Tweet({ name, username, tweet, profileImage }) {
               color: 'green',
             },
           }}
+          onClick={() => changeTweetVisiblity(tweetId)}
         />
       </Grid>
     </div>
