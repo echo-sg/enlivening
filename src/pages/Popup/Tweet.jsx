@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Tweet({ name, username, tweet }) {
+export default function Tweet({ name, username, tweet, profileImage }) {
   const classes = useStyles();
 
   return (
@@ -36,7 +36,7 @@ export default function Tweet({ name, username, tweet }) {
       <Paper className={classes.paper}>
         <Grid container spacing={2} justify="flex-start">
           <Grid item style={{ paddingTop: '15px' }}>
-            <Avatar>RJ</Avatar>
+            <Avatar src={profileImage}>RJ</Avatar>
           </Grid>
           <Grid item>
             <Typography gutterBottom p={0} variant="subtitle1">

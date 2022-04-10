@@ -1,6 +1,8 @@
 export const saveRecords = (array, tweets) => {
   const arrayObject = {};
-  array.forEach((record) => (arrayObject[record.id] = { ...record, tweets }));
+  array.forEach(
+    (record) => (arrayObject[record.id] = { ...record, tweets: tweets })
+  );
   chrome.storage.sync.set(arrayObject);
 };
 

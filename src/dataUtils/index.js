@@ -35,10 +35,10 @@ export const twitterSignIn = () => {
     });
 };
 
-export const getTweets = () => {
+export const getTweets = (twitterId) => {
   var config = {
     method: 'get',
-    url: 'https://api.twitter.com/2/users/1283983514204086272/tweets',
+    url: `https://api.twitter.com/2/users/${twitterId}/tweets?tweet.fields=created_at`,
     headers: {
       Authorization: 'Bearer ' + KEYS.BEARER_TOKEN,
     },
@@ -58,7 +58,10 @@ export const getTweets = () => {
 export const getTwitterUserByUserName = (username) => {
   var config = {
     method: 'get',
-    url: 'https://api.twitter.com/2/users/by/username/' + username,
+    url:
+      'https://api.twitter.com/2/users/by/username/' +
+      username +
+      '?user.fields=profile_image_url',
     headers: {
       Authorization: 'Bearer ' + KEYS.BEARER_TOKEN,
     },

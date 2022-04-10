@@ -26,7 +26,7 @@ const Options = () => {
     getTwitterUserByUserName(username)
       .then((userObject) => {
         if (userObject.data) {
-          saveRecords([{ ...userObject.data }]);
+          saveRecords([{ ...userObject.data }], null);
           setUsername('');
         } else {
           throw Error('User not found');
