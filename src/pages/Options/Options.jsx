@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Options.css';
 // import logo from './../../assets/img/logo.png';
 import logo from './../../assets/img/logo-black.png';
@@ -17,6 +17,8 @@ const rows = [
 ];
 
 const Options = () => {
+  const [User, SetNewUser] = useState('');
+
   return (
     <div className="MainUI">
       <div className="header container">
@@ -31,9 +33,22 @@ const Options = () => {
       <div className="UsersListArea">
         <div className="SearchBarArea">
           <div>
-            <input className="SearchBar" placeholder="Add User"></input>
+            <input
+              className="SearchBar"
+              placeholder="Add User"
+              onChange={(e) => {
+                SetNewUser(e.target.value);
+              }}
+            ></input>
           </div>
-          <button className="AddUserButton">Add new user</button>
+          <button
+            className="AddUserButton"
+            onClick={() => {
+              console.log('User -> ', User);
+            }}
+          >
+            Add new user
+          </button>
         </div>
         <div className="UsersTable" style={{ fontWeight: 'bold' }}>
           <table>
