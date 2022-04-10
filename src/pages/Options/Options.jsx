@@ -1,34 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Options.css';
-// import logo from './../../assets/img/logo.png';
 import logo from './../../assets/img/logo-black.png';
-import { saveRecords } from '../../storageUtils';
+import { getAllUsers, saveRecords } from '../../storageUtils';
+import { getTwitterUserByUserName } from '../../dataUtils';
 
-const rows = [
-  { id: 1, userName: '_shreygupta', name: 'Shrey Gupta' },
-  { id: 2, userName: 'nafees87n', name: 'Nafees Nehar ' },
-  { id: 3, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
-  { id: 4, userName: '4molydenum2', name: 'Tathagat Paul' },
-  { id: 5, userName: 'maybe_anurag', name: 'Anurag' },
-  { id: 6, userName: '_shreygupta', name: 'Shrey Gupta' },
-  { id: 7, userName: 'nafees87n', name: 'Nafees Nehar ' },
-  { id: 8, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
-  { id: 9, userName: '4molydenum2', name: 'Tathagat Paul' },
-  { id: 10, userName: 'maybe_anurag', name: 'Anurag' },
-  { id: 11, userName: '_shreygupta', name: 'Shrey Gupta' },
-  { id: 12, userName: 'nafees87n', name: 'Nafees Nehar ' },
-  { id: 13, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
-  { id: 14, userName: '4molydenum2', name: 'Tathagat Paul' },
-  { id: 15, userName: 'maybe_anurag', name: 'Anurag' },
-  { id: 16, userName: '_shreygupta', name: 'Shrey Gupta' },
-  { id: 17, userName: 'nafees87n', name: 'Nafees Nehar ' },
-  { id: 18, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
-  { id: 19, userName: '4molydenum2', name: 'Tathagat Paul' },
-  { id: 20, userName: 'maybe_anurag', name: 'Anurag' },
-];
+// const rows = [
+//   { id: 1, userName: '_shreygupta', name: 'Shrey Gupta' },
+//   { id: 2, userName: 'nafees87n', name: 'Nafees Nehar ' },
+//   { id: 3, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
+//   { id: 4, userName: '4molydenum2', name: 'Tathagat Paul' },
+//   { id: 5, userName: 'maybe_anurag', name: 'Anurag' },
+//   { id: 6, userName: '_shreygupta', name: 'Shrey Gupta' },
+//   { id: 7, userName: 'nafees87n', name: 'Nafees Nehar ' },
+//   { id: 8, userName: 'sumitshinde2608', name: 'Sumit Shinde' },
+//   { id: 9, userName: '4molydenum2', name: 'Tathagat Paul' },
+//   { id: 10, userName: 'maybe_anurag', name: 'Anurag' },
+// ];
 
 const Options = () => {
-  const [User, SetNewUser] = useState('');
+  const [username, setUsername] = useState('');
+  const [userList, setUserList] = useState([]);
+  const [shouldRefresh, setShouldRefresh] = useState(false);
+
+  const addUser = () => {
+    getTwitterUserByUserName(username)
+      .then((userObject) => {
+        if (userObject.data) {
+          saveRecords([{ ...userObject.data }]);
+          setUsername('');
+        } else {
+          throw Error('User not found');
+        }
+      })
+      .then(() => setShouldRefresh(true));
+  };
+
+  useEffect(() => {
+    getAllUsers()
+      .then((res) => setUserList(res))
+      .then(() => setShouldRefresh(false));
+  }, [shouldRefresh]);
 
   return (
     <div className="MainUI">
@@ -48,16 +59,11 @@ const Options = () => {
               className="SearchBar"
               placeholder="Add User"
               onChange={(e) => {
-                SetNewUser(e.target.value);
+                setUsername(e.target.value);
               }}
             ></input>
           </div>
-          <button
-            className="AddUserButton"
-            onClick={() => {
-              console.log('User -> ', User);
-            }}
-          >
+          <button className="AddUserButton" onClick={addUser}>
             Add new user
           </button>
         </div>
@@ -69,11 +75,11 @@ const Options = () => {
               <th>Name</th>
               <th>Remove</th>
             </tr>
-            {rows.map((val, key) => {
+            {userList.map((val, key) => {
               return (
                 <tr key={key}>
-                  <td>{val.id}</td>
-                  <td>{val.userName}</td>
+                  <td>{key + 1}</td>
+                  <td>{val.username}</td>
                   <td>{val.name}</td>
                   <td id="RemoveOption">
                     {' '}

@@ -54,3 +54,23 @@ export const getTweets = () => {
       });
   });
 };
+
+export const getTwitterUserByUserName = (username) => {
+  var config = {
+    method: 'get',
+    url: 'https://api.twitter.com/2/users/by/username/' + username,
+    headers: {
+      Authorization: 'Bearer ' + KEYS.BEARER_TOKEN,
+    },
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        resolve(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+};
