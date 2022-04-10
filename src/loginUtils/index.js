@@ -1,5 +1,57 @@
-import { TwitterAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, TwitterAuthProvider } from 'firebase/auth';
+import firebaseApp from '../firebase';
+import { KEYS } from '../KEYS';
+const axios = require('axios');
 
 export const twitterSignIn = () => {
   const provider = new TwitterAuthProvider();
+  const auth = getAuth(firebaseApp);
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+      // You can use these server side with your app's credentials to access the Twitter API.
+      const credential = TwitterAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const secret = credential.secret;
+
+      // The signed-in user info.
+      const user = result.user;
+      console.log({
+        user,
+        token,
+        secret,
+      });
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = TwitterAuthProvider.credentialFromError(error);
+      // ...
+      console.error({ errorCode, errorMessage, email, credential });
+    });
+};
+
+export const getTweets = () => {
+  var config = {
+    method: 'get',
+    url: 'https://api.twitter.com/2/users/1283983514204086272/tweets',
+    headers: {
+      Authorization: 'Bearer ' + KEYS.BEARER_TOKEN,
+    },
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
 };
